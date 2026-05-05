@@ -14,8 +14,6 @@ jobs:
     steps:
       - name: Clonar repositório
         uses: actions/checkout@v4
-        with:
-          ref: develop
 
       - name: Instalar Node.js
         uses: actions/setup-node@v4
@@ -40,8 +38,6 @@ jobs:
     steps:
       - name: Clonar repositório
         uses: actions/checkout@v4
-        with:
-          ref: develop
 
       - name: Instalar Node.js
         uses: actions/setup-node@v4
@@ -62,8 +58,6 @@ jobs:
     steps:
       - name: Clonar repositório
         uses: actions/checkout@v4
-        with:
-          ref: develop
 
       - name: Instalar Node.js
         uses: actions/setup-node@v4
