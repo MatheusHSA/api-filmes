@@ -58,3 +58,4 @@ Cada workflow executa três jobs independentes:
 - [x] Testes automatizados com cobertura >= 90%
 - [x] Lint configurado (ESLint)
 - [x] GitHub Actions configurado (commit + pull request)
+
