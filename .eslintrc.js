@@ -1,0 +1,19 @@
+module.exports = {
+  env: {
+    node: true,
+    es2021: true,
+    jest: true,
+  },
+  extends: 'eslint:recommended',
+  parserOptions: {
+    ecmaVersion: 'latest',
+  },
+  rules: {
+    'no-console': 'off',
+    semi: ['error', 'always'],
+    quotes: ['error', 'single'],
+    indent: ['error', 2],
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'eol-last': ['error', 'always'],
+  },
+};
