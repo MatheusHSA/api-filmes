@@ -1,3 +1,5 @@
+[![Docker Hub](https://badgen.net/badge/DockerHub/api-filmes/blue?icon=docker)](https://hub.docker.com/r/matheushsamorim/api-filmes)
+
 # API de Filmes - Projeto GitFLow
 - [x] Rota GET implementada e integrada
 - [x] Rota POST implementada e integrada
