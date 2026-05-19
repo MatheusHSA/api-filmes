@@ -91,7 +91,7 @@ jobs:
 
       - name: Build da Imagem Docker (Apenas Construção)
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/api-filmes:latest .
+          docker build -t matheushsamorim/api-filmes:latest .
 
   docker-publish:
     name: Publicação da Imagem no DockerHub
@@ -106,7 +106,7 @@ jobs:
       - name: Login no DockerHub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
+          username: matheushsamorim
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build e Push para o DockerHub
@@ -115,5 +115,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/api-filmes:latest
-            ${{ secrets.DOCKER_USERNAME }}/api-filmes:${{ github.sha }}
+            matheushsamorim/api-filmes:latest
+            matheushsamorim/api-filmes:${{ github.sha }}
