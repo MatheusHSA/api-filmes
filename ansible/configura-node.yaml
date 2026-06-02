@@ -1,0 +1,46 @@
+---
+- name: Configurar Servidor da API de Filmes via Ansible
+  hosts: backend
+  become: yes
+
+  tasks:
+    - name: Atualizar cache do apt
+      apt:
+        update_cache: yes
+
+    - name: Instalar pacotes base (curl e git)
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - curl
+        - git
+    - name: Configurar repositório do Node.js 20
+      shell: "curl -fsSL https://deb.nodesource.com/setup_20.x | bash -"
+      args:
+        creates: /etc/apt/sources.list.d/nodesource.list
+
+    - name: Instalar Node.js
+      apt:
+        name: nodejs
+        state: present
+    
+    - name: Criar pasta para a aplicação
+      file:
+        path: /var/www/api-Filmes
+        state: directory
+        owner: vagrant
+        group: vagrant
+        mode: '0755'
+    
+    - name: Clonar repositório Git para dentro da VM2
+      git:
+        repo: 'https://github.com/MatheusHSA/api-filmes.git'
+        dest: /var/www/api-filmes
+        version: master
+        force: yes
+    
+    - name: Instalar dependências do projeto via NPM
+      npm:
+        path: /var/www/api-filmes
+        state: present
