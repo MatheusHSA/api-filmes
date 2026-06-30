@@ -1,0 +1,28 @@
+---
+- hosts: vm2
+  become: yes
+  tasks:
+    - name: Intalar dependências
+      apt:
+        name:
+          - mailutils
+          - stress-ng
+        state: present
+        update_cache: yes
+
+    - name: Intalar Netdata
+      shell: bash <(curl -Ss https://my-netdata.io/kickstart.sh) --no-updates --stable-channel
+      args:
+        creates: /usr/sbin/netdata
+
+    - name: Configurar alerta de CPU (80%)
+      copy:
+        dest: /etc/netdata/health.d/cpu_alerts.conf
+        content: |
+          template: cpu_usage_high
+          on: system.cpu
+          lookup: average -1m unaligned of user
+          every: 1m
+          worn: $this > 80
+          crit: $this > 95
+          exec: /usr/bin/mail -s "Alerta de CPU: ${host}" seu-email@exemplo.com

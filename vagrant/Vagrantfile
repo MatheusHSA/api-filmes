@@ -40,5 +40,9 @@ Vagrant.configure("2") do |config|
             v.cpus = 1
             v.name = "VM2_Backend_Filmes"
         end
+
+        vm2.vm.provision "ansible" do |ansible|
+            ansible.playbook = "vagrant/data/configurar-monitoramento.yml"
+        end
     end
 end
